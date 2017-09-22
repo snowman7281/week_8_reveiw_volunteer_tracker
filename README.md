@@ -30,9 +30,9 @@ _You can view this app online [here](). To set up on your own machine, follow th
 * it is the same name if it has the same name
   * Example input: name1
   * Example output: name2
-* Words class allows user to save a words object to view later
-  * Example input: apple.save
-  * Example output: Words.find("apple")
+* sets its ID when you save it
+  * Example input: Project.all()
+  * Example output: [project]
 * Words class doesn't allow saving a words object that has already been saved.
   * Example input: cat.save
   * Example output: "Cat is already defined."

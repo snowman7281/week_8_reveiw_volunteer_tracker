@@ -32,7 +32,7 @@ describe(Project) do
     it("is the same name if it has the same name") do
       name1 = Project.new({:name => "Snow Vilay", :projectinfo => "Gardening Project"})
       name2 = Project.new({:name => "Snow Vilay", :projectinfo => "Gardening Project"})
-      expect(name1).to(eq(name2))
+      expect(name1.to(eq(name2))
     end
   end
 
