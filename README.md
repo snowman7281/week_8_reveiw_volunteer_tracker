@@ -18,15 +18,15 @@ _You can view this app online [here](). To set up on your own machine, follow th
 
 ## Specifications
 
-* checking volunteer class to create data.
-  * Example input: Snow
-  * Example output: Snow
+* check for no data in database.
+  * Example input: Project.all()
+  * Example output: []
 * check for empty database first
   * Example input: Volunteer.all()
   * Example output: []
-* Words class allows multiple definitions for the word.
-  * Example input: apple
-  * Example output: {:apple => :red, :apple => :fruit}
+* it check to have no projects at first
+  * Example input: Project.all()
+  * Example output: []
 * Words class can provide list of all words objects.
   * Example input: Words.all
   * Example output: [dog, cat, apple]

@@ -8,31 +8,33 @@ class Volunteer
     @name = attributes.fetch(:name)
   end
 
-  # def self.voluteers_array(arr)
-  #   volunteers = []
-  #   arr.each() do |volunteer|
-  #     name = volunteer.fetch("name")
-  #     volunteers.push(Volunteer.new({:name => name}))
-  #   end
-  #   volunteers
-  # end
+  def self.volunteers_array(arr)
+    volunteers = []
+    arr.each() do |volunteer|
+      id = volunteer.fetch("id")
+      name = volunteer.fetch("name")
+      volunteers.push(Volunteer.new({:id => id, :name => name}))
+    end
+    volunteers
+  end
+
+  def self.all()
+    returned_volunteers = DB.exec("SELECT * FROM volunteers;")
+    self.volunteers_array(returned_volunteers)
+  end
+
+  def save()
+    resutl =DB.exec("INSERT INTO volunteers (name) VALUES ('#{name}') RETURNING id;")
+    @id = result.first().fetch("id")
+  end
 
   def ==(another_volunteer)
     self.name().==(another_volunteer.name())
   end
 
-  def save()
-    DB.exec("INSERT INTO volunteers (name) VALUES ('#{name}');")
-  end
-
-  def self.all()
-    returned_volunteers = DB.exec("SELECT * FROM volunteers;")
-    volunteers = []
-    returned_volunteers.each() do |volunteer|
-      name = volunteer.fetch("name")
-      volunteers.push(Volunteer.new({:name => name}))
-    end
-    volunteers
+  def self.find_volunteer(name)
+    volunteer_info = DB.exec("SELECT * FROM volunteers WHERE name = '#{name}';")
+    self.volunteers_array(volunteer_info)
   end
 
 end
