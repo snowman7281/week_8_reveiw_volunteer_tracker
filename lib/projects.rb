@@ -7,7 +7,7 @@ class Project
     @id = (attributes.key?(:id) ? attributes.fetch(:id) : nil)
     @name = attributes.fetch(:name)
     @project_info = (attributes.key?(:project_info) ? attributes.fetch(:project_info) : nil)
-    @volunteer = (attributes.key?(:volunteer) ? attributes.fetch(:volunteer) : nil)
+    @volunteer = attributes.fetch(:volunteer)
   end
 
 end

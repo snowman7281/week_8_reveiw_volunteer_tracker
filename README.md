@@ -18,9 +18,9 @@ _You can view this app online [here](). To set up on your own machine, follow th
 
 ## Specifications
 
-* Words class stores a user's words to a list.
-  * Example input: cat
-  * Example output: cat
+* checking volunteer class.
+  * Example input: Snow
+  * Example output: Snow
 * Words class allows user to add definitions to words list.
   * Example input: dog
   * Example output: bark

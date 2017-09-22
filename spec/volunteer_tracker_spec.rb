@@ -1,8 +1,11 @@
-require 'rspec'
-require 'pg'
-require 'projects'
-require 'volunteers'
-require 'pry'
+require 'spec_helper'
 
 
-DB = PG.connect({:dbname => 'volunteer_tracker'})
+describe('#volunteer_tracker') do
+  describe('checking volunteers class') do
+    it('will create a volunteer class') do
+      volunteer_test = Volunteer.new({:name => "Snow Vilay",})
+      expect(volunteer_test.name()).to(eq("Snow Vilay"))
+    end
+  end
+end
