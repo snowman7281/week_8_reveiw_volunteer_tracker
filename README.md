@@ -21,15 +21,15 @@ _You can view this app online [here](). To set up on your own machine, follow th
 * check for no data in database.
   * Example input: Project.all()
   * Example output: []
-* check for empty database first
-  * Example input: Volunteer.all()
-  * Example output: []
-* it check to have no projects at first
-  * Example input: Project.all()
-  * Example output: []
-* Words class can provide list of all words objects.
-  * Example input: Words.all
-  * Example output: [dog, cat, apple]
+* check to save into database
+  * Example input: project_list[0].id
+  * Example output: save_test.id
+* find the project by volunteer
+  * Example input: Project.find_project("Michael Jordan")
+  * Example output: [save_test3]
+* it is the same name if it has the same name
+  * Example input: name1
+  * Example output: name2
 * Words class allows user to save a words object to view later
   * Example input: apple.save
   * Example output: Words.find("apple")

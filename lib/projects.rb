@@ -37,4 +37,29 @@ class Project
     project_info = DB.exec("SELECT * FROM projects WHERE name = '#{name}';")
     self.projects_array(project_info)
   end
+
+  def self.unique_volunteer_list(arr)
+    projects = []
+    arr.each do |project|
+      if !projects.include?(project.name)
+        projects.push(project.name)
+    end
+  end
+  projects
+end
+
+  def self.edit_info(attributes)
+    new_name = attributes.fetch(:new_name)
+    new_projectinfo = attributes.fetch(:new_projectinfo)
+    name = attributes.fetch(:name)
+    projectinfo = attributes.fetch(:projectinfo)
+    DB.exec("UPDATE projects SET name = '#{new_name}', projectinfo = '#{new_projectinfo}' WHERE name = '#{name}' AND projectinfo = '#{projectinfo}';")
+  end
+
+  def self.delete_info(attributes)
+    name = attributes.fetch(:name)
+    projectinfo = attributes.fetch(:projectinfo)
+    DB.exec("DELETE FROM projects WHERE name = '#{name} AND projectinfo = '#{projectinfo}'")
+  end
+
 end

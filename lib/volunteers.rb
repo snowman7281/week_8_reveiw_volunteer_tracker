@@ -24,7 +24,7 @@ class Volunteer
   end
 
   def save()
-    resutl =DB.exec("INSERT INTO volunteers (name) VALUES ('#{name}') RETURNING id;")
+    result =DB.exec("INSERT INTO volunteers (name) VALUES ('#{name}') RETURNING id;")
     @id = result.first().fetch("id")
   end
 
@@ -36,5 +36,17 @@ class Volunteer
     volunteer_info = DB.exec("SELECT * FROM volunteers WHERE name = '#{name}';")
     self.volunteers_array(volunteer_info)
   end
+
+  def self.unique_volunteer_list(arr)
+    volunteers = []
+    arr.each do |volunteer|
+      if !volunteers.include?(volunteer.name)
+        volunteers.push(volunteer.name)
+    end
+  end
+  volunteers
+end
+
+
 
 end

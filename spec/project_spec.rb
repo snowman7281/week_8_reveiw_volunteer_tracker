@@ -28,4 +28,20 @@ describe(Project) do
     end
   end
 
+  describe("#==") do
+    it("is the same name if it has the same name") do
+      name1 = Project.new({:name => "Snow Vilay", :projectinfo => "Gardening Project"})
+      name2 = Project.new({:name => "Snow Vilay", :projectinfo => "Gardening Project"})
+      expect(name1).to(eq(name2))
+    end
+  end
+
+  describe("#id") do
+    it("sets its ID when you save it") do
+      project = Project.new({:name => "Snow Vilay", :projectinfo => "Gardening Project"})
+      project.save()
+      expect(Project.all()).to(eq([project]))
+    end
+  end
+
 end
