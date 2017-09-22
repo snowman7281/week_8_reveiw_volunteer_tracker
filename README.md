@@ -18,12 +18,12 @@ _You can view this app online [here](). To set up on your own machine, follow th
 
 ## Specifications
 
-* checking volunteer class.
+* checking volunteer class to create data.
   * Example input: Snow
   * Example output: Snow
-* Words class allows user to add definitions to words list.
-  * Example input: dog
-  * Example output: bark
+* check for empty database first
+  * Example input: Volunteer.all()
+  * Example output: []
 * Words class allows multiple definitions for the word.
   * Example input: apple
   * Example output: {:apple => :red, :apple => :fruit}
