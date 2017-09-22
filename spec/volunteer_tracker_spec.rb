@@ -19,4 +19,10 @@ end
 
 describe Volunteer do
   describe("#save") do
+    it("adds name to the array of saved names") do
+      test_name = Volunteer.new({:name => "Snow Vilay"})
+      test_name.save()
+      expect(Volunteer.all()).to(eq([test_name]))
+    end
+  end
 end

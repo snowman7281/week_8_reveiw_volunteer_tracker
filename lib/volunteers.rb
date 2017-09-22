@@ -22,8 +22,7 @@ class Volunteer
   end
 
   def save()
-    result = DB.exec("INSERT INTO volunteer (name) VALUES ('#{name}') RETURNING id;")
-    @id = result.first().fetch("id")
+    DB.exec("INSERT INTO volunteers (name) VALUES ('#{name}');")
   end
 
   def self.all()
