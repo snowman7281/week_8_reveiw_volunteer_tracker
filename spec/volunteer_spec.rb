@@ -1,46 +1,75 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe(Volunteer) do
-  describe(".all") do
-    it("starts off with no lists") do
-      expect(Volunteer.all()).to(eq([]))
+describe Volunteer do
+  describe '#name' do
+    it 'returns the name of the volunteer' do
+      test_volunteer = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      expect(test_volunteer.name).to eq 'Snow Vilay'
     end
   end
 
-  describe("#save") do
-    it("will let you save a volunteer into the database") do
-      save_test = Volunteer.new({:name => "Snow Vilay", :age => "36", :dob => "1981-07-02", :project_id => 1})
-      save_test.save()
-      volunteer_list = Volunteer.all()
-      expect(volunteer_list[0].id).to(eq(save_test.id))
+  describe '#project_id' do
+    it 'returns the project_id of the volunteer' do
+      test_volunteer = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      expect(test_volunteer.project_id).to eq 1
     end
   end
 
-  describe("#find_volunteer") do
-    it("will find the volunteer by project") do
-      save_test1 = Volunteer.new({:name => "Snow Vilay", :age => 36, :dob => 1981-07-02, :project_id => 1})
-      save_test1.save()
-      save_test2 = Volunteer.new({:name => "Michael Jackson", :age => 80, :dob => 1956-07-02, :project_id => 1})
-      save_test2.save()
-      save_test3 = Volunteer.new({:name => "Michael Jordan", :age => 54, :dob => 1961-07-02, :project_id => 1})
-      save_test3.save()
-      expect(Volunteer.find_volunteer("Michael Jordan")).to(eq([save_test3]))
+  describe '#==' do
+    it 'checks for equality based on the name of a volunteer' do
+      volunteer1 = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer2 = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      expect(volunteer1 == volunteer2).to eq true
     end
   end
 
-  describe("#==") do
-    it("is the same name if it has the same name") do
-      name1 = Volunteer.new({:name => "Snow Vilay", :age => 36, :dob => 1981-07-02, :project_id => 1})
-      name2 = Volunteer.new({:name => "Snow Vilay", :age => 36, :dob => 1981-07-02, :project_id => 1})
-      expect(name1).to(eq(name2))
+  context '.all' do
+    it 'is empty to start' do
+      expect(Volunteer.all).to eq []
+    end
+
+    it 'returns all volunteers' do
+      volunteer1 = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer2.save
+      expect(Volunteer.all).to eq [volunteer1, volunteer2]
     end
   end
 
-  describe("#id") do
-    it("sets its ID when you save it") do
-      volunteer = Volunteer.new({:name => "Snow Vilay", :age => 36, :dob => 1981-07-02, :project_id => 1})
-      volunteer.save()
-      expect(Volunteer.all()).to(eq([volunteer]))
+  describe '#save' do
+    it 'adds a volunteer to the database' do
+      volunteer1 = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer1.save
+      expect(Volunteer.all).to eq [volunteer1]
+    end
+  end
+
+  describe '.find' do
+    it 'returns a volunteer by id' do
+      volunteer1 = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Michael Jordan', :project_id => 1, :id => nil})
+      volunteer2.save
+      expect(Volunteer.find(volunteer1.id)).to eq volunteer1
+    end
+  end
+
+  describe '#update' do
+    it 'allows a user to update a volunteer' do
+      volunteer = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.update({:name => 'Snowman', :project_id => 1, :id => nil})
+      expect(volunteer.name).to eq 'Snowman'
+    end
+  end
+
+  context '#delete' do
+    it 'allows a user to delete a volunteer' do
+      volunteer = Volunteer.new({:name => 'Snow Vilay', :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.delete
+      expect(Volunteer.all).to eq []
     end
   end
 
